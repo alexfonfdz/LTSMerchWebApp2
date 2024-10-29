@@ -5,3 +5,4 @@ dockerfilePath = "./LTSMerchWebApp/Dockerfile"
 [deploy]
 startCommand = "./LTSMerchWebApp.dll"
 restartPolicyType = "always"
+healthCheckPath = "/health"
