@@ -1,0 +1,7 @@
+[build]
+builder = "dockerfile"
+dockerfile = "./LTSMerchWebApp/Dockerfile"
+
+[deploy]
+startCommand = "./LTSMerchWebApp.dll"
+restartPolicyType = "always"
