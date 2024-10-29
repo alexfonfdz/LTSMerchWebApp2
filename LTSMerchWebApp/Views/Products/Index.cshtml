@@ -3,7 +3,7 @@
 <head>
     <!-- Otros enlaces y scripts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="~/css/ProductsIndex.css"> 
+    <link rel="stylesheet" href="~/css/ProductsIndex.css">
     <link rel="stylesheet" href="~/css/SidebarModalAdd.css">
 </head>
 
@@ -28,6 +28,7 @@
                 </thead>
                 <tbody>
                     @foreach (var product in Model)
+
                     {
                         <tr data-product-id="@product.ProductId">
                             <td>@product.ProductId</td>
@@ -40,6 +41,7 @@
                             <td>
                                 <!-- Mostrar el Color -->
                                 @foreach (var option in product.ProductOptions)
+
                                 {
                                     @option.Color?.ColorName <br /> <!-- Usamos "?" para evitar errores si es null -->
                                 }
@@ -47,6 +49,7 @@
                             <td>
                                 <!-- Mostrar la Talla -->
                                 @foreach (var option in product.ProductOptions)
+
                                 {
                                     @option.Size?.SizeName <br /> <!-- Usamos "?" para evitar errores si es null -->
                                 }
@@ -78,12 +81,8 @@
 </div>
 
 <!-- Incluir el sidebar de agregar producto -->
-@Html.Partial("_AddProductSidebar", new LTSMerchWebApp.Models.Product())
-@Html.Partial("_EditProductSidebar", new LTSMerchWebApp.Models.Product())
-
-
-
-
+@await Html.PartialAsync("_AddProductSidebar", new LTSMerchWebApp.Models.Product())
+@await Html.PartialAsync("_EditProductSidebar", new LTSMerchWebApp.Models.Product())
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -98,9 +97,5 @@
         function closeSidebar() {
             document.getElementById("addProductSidebar").classList.remove("sidebar-open");
         }
-
-
-
-
     </script>
 }
