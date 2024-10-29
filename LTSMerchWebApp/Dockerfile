@@ -17,4 +17,4 @@ RUN dotnet publish "./LTSMerchWebApp.csproj" -c $BUILD_CONFIGURATION -o /app/pub
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "LTSMerchWebApp.dll"]	
+ENTRYPOINT ["dotnet", "LTSMerchWebApp.dll"]
