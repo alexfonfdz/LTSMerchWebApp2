@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LTSMerchWebApp", "LTSMerchWebApp\LTSMerchWebApp.csproj", "{93E9C6E1-957A-47F9-B832-0CD956420467}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{3E6233E6-431B-43A7-8A23-670A0F14F2B1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{8ED1ED9A-DAF7-4453-8AD9-75D791843849}"
 	ProjectSection(SolutionItems) = preProject
 		railway.toml = railway.toml
 	EndProjectSection

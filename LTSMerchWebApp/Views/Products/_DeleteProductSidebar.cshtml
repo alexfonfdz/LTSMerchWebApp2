@@ -1,0 +1,94 @@
+﻿@{
+    var id = Model.ProductId;
+}
+<div id="deleteProductSidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h5>ELIMINAR</h5>
+        <button type="button" class="close-btn" onclick="closeDeletedSidebar()">×</button>
+    </div>
+    <div class="sidebar-content">
+        <form id="deleteProductForm" data-product-id="@Model.ProductId" action="@Url.Action("Deleted", "Products")">
+            <input type="hidden" id="productId" name="id" value="@Model.ProductId" />
+            <div class="form-group">
+                <p class="question-text">¿Está seguro de que quiere eliminar este producto?</p>
+                <div class="product-preview">
+                    <img src="@Url.Content("~/img/" + Model.ImageUrl)" alt="Producto" class="product-image">
+                    <p class="product-name">@Model.Name</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p class="text-continue">Para continuar:</p>
+                <label for="password">Ingrese la contraseña</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Ingresar contraseña" required>
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password', this)">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar contraseña</label>
+                <div class="password-container">
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Ingresar contraseña" required>
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <button id="deleteProductBtn" type="button" class="btn btn-primary" onclick="submitDeleteProductForm()">Confirmar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function closeDeleteModal() {
+        $('#productDeletedModal').fadeOut();
+    }
+
+    function closeDeletedSidebar() {
+        $('#deleteProductSidebar').removeClass('sidebar-open');
+    }
+
+    function togglePasswordVisibility(fieldId, toggleButton) {
+        const field = document.getElementById(fieldId);
+        const icon = toggleButton.querySelector('i');
+
+        if (field.type === "password") {
+            field.type = "text";
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        } else {
+            field.type = "password";
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        }
+    }
+
+    function submitDeleteProductForm() {
+        var form = $('#deleteProductForm');
+        var id = @id ;
+        var password = $('#password').val();
+        var confirmPassword = $('#confirmPassword').val();
+
+        console.log("Product ID:", id);  // Para verificar que el ID está correcto
+
+        $.ajax({
+            url: form.attr('action'),  // Utiliza la URL especificada en el atributo action
+            type: 'POST',
+            data: { id: id, password: password, confirmPassword: confirmPassword },
+            success: function (response) {
+                if (response.success) {
+                    closeDeletedSidebar();
+                    $('#productDeletedModal').fadeIn();
+                } else {
+                    alert(response.message || "Ocurrió un error al eliminar el producto.");
+                }
+            },
+            error: function () {
+                alert("Error al eliminar el producto.");
+            }
+        });
+    }
+</script>

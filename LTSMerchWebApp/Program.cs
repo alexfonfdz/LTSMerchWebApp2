@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Carga las variables de entorno desde el archivo .env
-Env.Load("../");
+Env.Load();
 
 // Configura el contexto de base de datos MySQL utilizando la cadena de conexión del archivo .env
 builder.Services.AddDbContext<LtsMerchStoreContext>(options =>

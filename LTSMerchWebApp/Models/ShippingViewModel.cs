@@ -2,6 +2,6 @@
 
 public class ShippingViewModel
 {
-    public required Order Order { get; set; }
-    public required Cart Cart { get; set; }
+    public Order Order { get; set; }
+    public Cart Cart { get; set; }
 }
